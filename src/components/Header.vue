@@ -9,7 +9,10 @@
        @click="$emit('searchingText', searchText)">
          <h1>FILM</h1>
        </button>
-       <button class="p-1">
+
+       <button 
+       class="p-1"
+       @click="$emit('searchingTextSerieTV', searchText)">
          <h1>SERIE TV</h1>
        </button>
 
@@ -43,6 +46,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  button{
+      margin-left: 30px;
+  }
   input{
     width: 300px;
     height: 30px;

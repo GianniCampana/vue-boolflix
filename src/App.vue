@@ -1,8 +1,18 @@
 <template>
 
   <div id="app">
-    <Header @searchingText='searchingText' />
-    <Main />
+
+    <Header 
+    @searchingText= searchingText 
+    @searchingTextSerieTV= searchingTextSerieTV 
+    />
+
+ 
+
+    <Main :films="films" :serie="serie"/>
+
+   
+
   </div>
 
 </template>
@@ -21,12 +31,13 @@ export default {
     Header
   },
   data(){
-    
     return{
       apiURL: 'https://api.themoviedb.org/3/search/movie',
       apiKey: 'e5d21c27119e25a2e0249ca43680564d',
-     
-      
+      films: [],
+
+      apiURLSerieTv : 'https://api.themoviedb.org/3/search/tv',
+      serie: []
     }
   },
   methods:{
@@ -35,21 +46,36 @@ export default {
      this.searching(obj)
 
     },
+    searchingTextSerieTV(obj){
+      this.searchingSerieTV(obj)
+    },
 
     searching(query){
-          axios.get(this.apiURL,{
-            params:{
-            api_key: this.apiKey,
-            query: query,
-            language: 'it-IT'
-          }
-    })
-    .then(resp => {
-      console.log(resp);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      axios.get(this.apiURL,{
+        params:{
+        api_key: this.apiKey,
+        query: query,
+        language: 'it-IT'
+      }}).then(resp => {
+        this.films = resp.data.results
+        
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+
+    searchingSerieTV(query){
+        axios.get(this.apiURLSerieTv,{
+        params:{
+        api_key: this.apiKey,
+        query: query,
+        language: 'it-IT'
+      }}).then(resp => {
+        this.serie = resp.data.results
+        
+      }).catch(err => {
+        console.log(err);
+      })
     }
   },
   created(){
