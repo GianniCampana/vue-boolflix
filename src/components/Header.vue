@@ -1,40 +1,41 @@
 <template>
+
     <header>
       <div class="menu">
 
-       <input v-model='searchText' class="input-text" type="text" placeholder="inserisci il film">
+        <input v-model='searchText' class="input-text" type="text" placeholder="inserisci il film">
 
-       <button 
-       class="p-1"
-       @click="$emit('searchingText', searchText)">
-         <h1>FILM</h1>
-       </button>
+        <button 
+            class="p-1"
+            @click="$emit('searchingText', searchText)">
+            <h1>FILM</h1>
+        </button>
 
-       <button 
-       class="p-1"
-       @click="$emit('searchingTextSerieTV', searchText)">
-         <h1>SERIE TV</h1>
-       </button>
+        <button 
+            class="p-1"
+            @click="$emit('searchingTextSerieTV', searchText)">
+            <h1>SERIE TV</h1>
+        </button>
 
       </div>
+
     </header>
+
 </template>
 
 <script>
 export default {
     name: 'Header',
+    
     data(){
         return{
             searchText: ''
         }
     },
     props: {
-       
     },
     methods:{
-      
     }
-
 }
 </script>
 
@@ -55,5 +56,4 @@ export default {
     margin-right: 20px;
   }
 }
-
 </style>
