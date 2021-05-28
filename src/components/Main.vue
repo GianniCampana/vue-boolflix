@@ -11,7 +11,7 @@
                 <h1>Titolo originale: {{film.original_title}}</h1>
                 <h1 v-if="bandiere.includes(film.original_language)"> <img :src="require(`../assets/img/${film.original_language}.png`)" :alt="film.original_language"> </h1>
                 <h1 v-else>Lingua originale: {{film.original_language}}</h1>
-                <h1>Voto: {{film.vote_average}}</h1>
+                <h1>Voto: {{printStars}}</h1>
             </div>
    
         </div>
@@ -44,11 +44,24 @@ export default {
 
     data(){
         return{
-            bandiere: ['it', 'en']
+            bandiere: ['it', 'en'],
+            stars:[],
+            star: <i class="fas fa-star"></i>
+            
+            
         }
+        
     },
+    
 
     methods:{
+        printStars(){
+            let votoApprossimato = Math.floor(this.films.results.vote_average)
+            for(let i=0; i<votoApprossimato; i++){
+                this.stars.push(this.star)
+            }
+            return this.stars
+        }
     }
     
 }
@@ -62,9 +75,7 @@ export default {
     background-color: gray;
     display: flex;
     .tutti-i-film{
-        
         width: 50%;
-        
     }
     .tutte-le-serie{
        width: 50%;
@@ -75,7 +86,6 @@ export default {
                }
            }
        }
-       
     }
     h1{
         margin-bottom: 30px;
@@ -83,12 +93,13 @@ export default {
     .filmList{
         margin-bottom: 100px;
         h1{
+             .fa-star{
+                   color: rgb(204, 204, 68);
+               }
             img{
                 width: 70px;
             }
-        }
-        
+        } 
     }
 }
-
 </style>
