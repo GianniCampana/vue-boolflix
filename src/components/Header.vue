@@ -63,7 +63,6 @@ header{
             width: 100%;
             height: 90px;
             background-color: #000000;
-            
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
@@ -78,6 +77,7 @@ header{
                     justify-content: space-around;
                     align-items: center;
                         input{
+                            background-color: rgb(214, 210, 210);
                             width: 350px;
                             height: 30px;
                             border-radius: 5px;

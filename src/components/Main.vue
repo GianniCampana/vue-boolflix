@@ -11,7 +11,8 @@
                 <img class="img-null" :src="`https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg`" :alt="film.name" v-if="film.poster_path===null">
                 <img :src="`https://image.tmdb.org/t/p/w300/${film.poster_path}`" :alt="film.title" v-if="film.poster_path!==null">
             </div>
-            <div class="back-card">
+            
+                <div class="back-card">
                 <h1>Titolo: {{film.title}}</h1>
                 <h1>Titolo originale: {{film.original_title}}</h1>
                 <h1 v-if="bandiere.includes(film.original_language)"> <img :src="require(`../assets/img/${film.original_language}.png`)" :alt="film.original_language"> </h1>
@@ -24,6 +25,7 @@
                         <span v-for="(empty,index) in printeVoteEmpty(film.vote_average)" :key="index" v-html="empty" ></span>
                 </h1>
             </div>
+            
         </div> 
     </div>
 
@@ -37,10 +39,12 @@
                 <img class="img-null" :src="`https://genesisairway.com/wp-content/uploads/2019/05/no-image.jpg`" :alt="serieTv.name" v-if="serieTv.poster_path===null">
                 <img :src="`https://image.tmdb.org/t/p/w300/${serieTv.poster_path}`" :alt="serieTv.name" v-if="serieTv.poster_path!==null">
             </div>
-           <div class="back-card">
+            
+                <div class="back-card">
                 <h1>Titolo: {{serieTv.name}}</h1>
                 <h1 v-if="bandiere.includes(serieTv.original_language)"> <img :src="require(`../assets/img/${serieTv.original_language}.png`)" :alt="serieTv.original_language"></h1>
                 <h1 v-else >Lingua originale: {{serieTv.original_language}}</h1>
+                <h1 class="descrizione">Descrizione: {{serieTv.overview}}</h1>
                 <h1>Voto: <span 
                        v-for="(voto, index) in printVote(serieTv.vote_average)"
                         :key="index+'votoTv'" v-html="voto">
@@ -48,6 +52,7 @@
                         <span v-for="(empty,index) in printeVoteEmpty(serieTv.vote_average)" :key="index" v-html="empty" ></span>
                 </h1>
            </div>
+            
         </div>
     </div>
  </div>
@@ -100,6 +105,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 10px;
@@ -117,8 +123,6 @@ export default {
 ::-webkit-scrollbar-thumb:hover{
     background: #535353;
 }
-
-
 .main{
     width: 100%;
     min-height: 100vh;
@@ -157,14 +161,15 @@ export default {
             color: white;
             padding-top: 20px;
             border: whitesmoke solid 1px;
-            overflow: hidden;
+            backface-visibility: hidden;
+            overflow-x: auto;
             }
         
          .front-card{ 
              -webkit-backface-visibility: hidden;
              backface-visibility: hidden; 
              width: 300px;
-             
+             z-index: 1;
              
              img{
                  width: 300px;
@@ -189,15 +194,14 @@ export default {
             background-color: rgb(27, 27, 27);
             color: white;
             padding-top: 20px;
-            border: whitesmoke solid 1px;
-            
-            
+            border: whitesmoke solid 1px; 
+            backface-visibility: hidden;
+            overflow-x: auto;
          }
           .front-card{ 
              -webkit-backface-visibility: hidden;
              backface-visibility: hidden; 
               width: 300px;
-              
              
              img{
                  width: 300px;
@@ -212,7 +216,7 @@ export default {
             transform-style: preserve-3d;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
               h1{
-               font-size: 20px;
+               font-size: 15px;
                img{
                    width: 70px;
                }

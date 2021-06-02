@@ -7,7 +7,7 @@
       @searchingTextAll= searchingTextAll
       />
       <Main :films="films" :serie="serie"/>
-      
+
   </div>
 
 </template>
@@ -84,7 +84,7 @@
       this.searchingSerieTV(query)
     } 
   },
-  created(){ 
+  created(){
   }
 }
 
